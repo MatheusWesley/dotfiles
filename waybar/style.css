@@ -3,7 +3,7 @@
     border-radius: 0px;
     font-family: "Fira Mono Nerd Font";
     font-weight: bold;
-    font-size:  15px;
+    font-size: 15px;
     min-height: 0;
     transition: 0.1s;
 }
@@ -50,7 +50,8 @@ tooltip {
     border-radius: 20px;
 }
 
-#custom-power_profile,
+#custom-power,
+#custom-reboot,
 #custom-weather,
 #window,
 #clock,
@@ -97,8 +98,20 @@ tooltip {
     padding-left: 5px;
 }
 
+#custom-power {
+    color: #ed8796;
+    border-left: 0px;
+    border-right: 0px;
+    border-radius: 0px 20px 20px 0px;
+    margin-right: 5px;
+    padding-right: 8px;
+}
+
+
 #custom-power_profile {
     color: #a6e3a1;
+    margin-right: 5px;
+    border-radius: 20px;
     border-left: 0px;
     border-right: 0px;
 }
@@ -127,9 +140,7 @@ tooltip {
 
 #bluetooth {
     color: #89b4fa;
-    border-radius: 20px;
-    margin-right: 10px
-} 
+}
 
 #pulseaudio {
     color: #89b4fa;
