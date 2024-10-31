@@ -10,6 +10,7 @@
   "modules-center": ["clock"],
   "modules-right": [
     "temperature",
+    "custom/power_profile",
     "battery",
     "backlight",
     "pulseaudio",
@@ -61,9 +62,9 @@
   },
 
   "clock": {
-    "format": "{:%d/%b | %H:%M}",
+    "format": "{:%d/%b - %H:%M}",
     "on-click": "gnome-calendar &",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
   },
 
   "backlight": {
@@ -117,12 +118,12 @@
     "scroll-step": 5
   },
 
-  "temperature": {
-  "thermal-zone": 1, 
-  "format": " {temperatureC}°C",
-  "critical-threshold": 80,
-  "format-critical": "{temperatureC}°C "
-  },
+  //"temperature": {
+  //"thermal-zone": 1, 
+  //"format": "{temperatureF}°F ",
+  //"critical-threshold": 80,
+  //"format-critical": "{temperatureC}°C "
+  //},
 
 
 
