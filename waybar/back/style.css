@@ -1,0 +1,138 @@
+@import "./themes/mocha.css";
+
+* {
+    color: @text;
+    font-family: "Fira Mono Nerd Font";
+    font-size: 16px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: alpha(@mantle, 0.7);
+    color: @text;
+}
+
+tooltip {
+    background: @base;
+    border-radius: 7px;
+    border: 1px solid @mantle;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    color: @text;
+    margin: 0 3px;
+}
+
+#workspaces button.active {
+    color: @lavender;
+    background: alpha(@surface0, 0.7);
+    border-radius: 3px;
+}
+
+#workspaces button.focused {
+    color: @text;
+    background: alpha(@surface0, 0.7);
+    border-radius: 3px;
+}
+
+#workspaces button.urgent {
+    color: @crust;
+    background: @red;
+    border-radius: 3px;
+}
+
+#workspaces button:hover {
+    background: alpha(@surface0, 0.5);
+    color: @text;
+    border-radius: 3px;
+}
+
+#custom-power,
+#custom-reboot,
+#custom-weather,
+#window,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#bluetooth,
+#temperature,
+#workspaces,
+#tray,
+#backlight {
+    background: alpha(@base, 0.7);
+    padding: 0 8px;
+    margin: 3px 0;
+    border-radius: 3px;
+}
+
+#workspaces {
+    margin-left: 3px;
+    padding: 0 3px;
+}
+
+#custom-power {
+    margin-right: 3px;
+}
+
+#window {
+    margin: 3px;
+}
+
+#clock {
+    color: @maroon;
+    font-weight: bold;
+    margin-left: 3px;
+    padding: 0 8px;
+}
+
+#network {
+    color: @sapphire;
+    padding: 0 8px;
+}
+
+#bluetooth {
+    color: @blue;
+    padding: 0 8px;
+}
+
+#pulseaudio {
+    color: @pink;
+    padding: 0 8px;
+}
+
+#pulseaudio.microphone {
+    color: @mauve;
+    padding: 0 8px;
+    margin-right: 3px;
+}
+
+#battery {
+    color: @green;
+    padding: 0 8px;
+    margin-right: 3px;
+}
+
+#tray {
+    margin-right: 3px;
+    padding: 0 6px;
+}
+
+#backlight {
+    color: @yellow;
+    padding: 0 8px;
+}
+
+#custom-weather {
+    padding: 0 8px;
+}
+
+/* Remove specific border-radius settings as we're using a uniform approach */
+#temperature,
+#network,
+#bluetooth,
+#pulseaudio,
+#battery {
+    border-radius: 3px;
+}

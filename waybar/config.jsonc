@@ -1,32 +1,38 @@
 {
+  "height": 44,
   "layer": "top",
   "position": "top",
   "mod": "dock",
   "exclusive": true,
   "passthrough": false,
   "gtk-layer-shell": true,
-  "height": 30,
-  "modules-left": ["hyprland/workspaces", "hyprland/window"],
-  "modules-center": ["clock"],
+  "spacing": 7,
+  "modules-left": ["custom/launcher", "hyprland/window"],
+  "modules-center": ["hyprland/workspaces"],
   "modules-right": [
-    "temperature",
-    "battery",
-    "backlight",
     "pulseaudio",
-    "pulseaudio#microphone",
-    "tray",
     "network",
     "bluetooth",
-    "custom/power"
+    "battery",
+    "clock",
+    "custom/powermenu",
   ],
-  "hyprland/window": {
-    "format": "{}"
-  },
 
+  "hyprland/window": {
+    "format": "🎩 {}",
+    "rewrite": {
+      "(.*) — Google Chrome": "🌐 $1",
+      "(.*) — Visual Studio Code": "💻 $1",
+      "(.*) — kitty": "🐱 $1",
+    },
+    "separate-outputs": true,
+  },
   "hyprland/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
     "on-click": "activate",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
     "persistent_workspaces": {
       "1": [],
       "2": [],
@@ -37,102 +43,97 @@
       "7": [],
       "8": [],
       "9": [],
-      "10": []
-    }
-  },
-  "custom/power": {
-    "format": " ",  // Ícone de desligar
-    "tooltip": "Desligar",
-    "on-click": "wlogout"
-},
-
-  //"custom/weather" : {
-  //shows the current weather and forecast
-  // "tooltip" : true,
-  //"format" : "{}",
-  //"interval" : 30,
-  //"exec" : "~/.config/waybar/scripts/waybar-wttr.py",
-  //"return-type" : "json"
-  //},
-
-  "tray": {
-    "icon-size": 15,
-    "spacing": 10
-  },
-
-  "clock": {
-    "format": "{:%d/%b | %H:%M}",
-    "on-click": "gnome-calendar &",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-  },
-
-  "backlight": {
-    "device": "intel_backlight",
-    "format": "{icon} {percent}%",
-    "format-icons": ["󰃞", "󰃟", "󰃠"],
-    "on-scroll-up": "brightnessctl set 1%+",
-    "on-scroll-down": "brightnessctl set 1%-",
-    "min-length": 6
-  },
-
-  "battery": {
-    "states": {
-      "good": 95,
-      "warning": 30,
-      "critical": 20
+      "10": [],
     },
-    "format": "{icon} {capacity}%",
-    "format-charging": " {capacity}%",
-    "format-plugged": " {capacity}%",
-    "format-alt": "{time} {icon}",
-    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
   },
 
-  "pulseaudio": {
-    "format": "{icon} {volume}%",
+  "custom/launcher": {
+    "interval": "once",
+    "format": "",
+    "on-click": "wofi --show drun --columns 2 -I -s ~/.config/wofi/style.css",
     "tooltip": false,
-    "format-muted": " Muted",
-    "on-click": "pamixer -t",
-    "on-scroll-up": "pamixer -i 5",
-    "on-scroll-down": "pamixer -d 5",
-    "scroll-step": 5,
-    "format-icons": {
-      "headphone": "",
-      "hands-free": "",
-      "headset": "",
-      "phone": "",
-      "portable": "",
-      "car": "",
-      "default": ["", "", ""]
-    }
   },
 
-  "pulseaudio#microphone": {
-    "format": "{format_source}",
-    "format-source": "Mic: {volume}%",
-    "format-source-muted": "Mic: Muted",
-    "on-click": "pamixer --default-source -t",
-    "on-scroll-up": "pamixer --default-source -i 5",
-    "on-scroll-down": "pamixer --default-source -d 5",
-    "scroll-step": 5
+  "cpu": {
+    "interval": 10,
+    "format": "  {usage}%",
+    "max-length": 10,
   },
 
   "temperature": {
-  "thermal-zone": 1, 
-  "format": " {temperatureC}°C",
-  "critical-threshold": 80,
-  "format-critical": "{temperatureC}°C "
+    "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+    "format": " {temperatureC}°C",
+    "on-click": "psensor",
   },
 
+  "memory": {
+    "interval": 30,
+    "format": "  {}%",
+    "format-alt": " {used:0.1f}G",
+    "max-length": 10,
+  },
 
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-bluetooth": "{icon} {volume}% {format_source}",
+    "format-bluetooth-muted": "󰟎  {format_source}",
+    "format-muted": "󰟎",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": " ",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""],
+    },
+    "on-click-right": "pavucontrol",
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+  },
 
+  "network": {
+    "format-wifi": "󰤨  {signalStrength}%",
+    "format-ethernet": "󰈀 wired",
+    "format-disconnected": "󰤭 ",
+    "on-click": "sh ~/.config/wofi/wifimenu.sh",
+  },
   "bluetooth": {
-    "format": " {status}",
+    "format": " {status}",
     "format-disabled": "", // an empty format will hide the module
     "format-connected": " {num_connections}",
     "tooltip-format": "{device_alias}",
     "tooltip-format-connected": " {device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}",
     "on-click": "blueman-manager"
-  }
+  },
+
+  "battery": {
+    "bat": "BAT0",
+    "adapter": "ADP0",
+    "interval": 60,
+    "states": {
+      "warning": 30,
+      "critical": 15,
+    },
+    "max-length": 20,
+    "format": "{icon}  {capacity}%",
+    "format-warning": "{icon}  {capacity}%",
+    "format-critical": "{icon}  {capacity}%",
+    "format-charging": "  {capacity}%",
+    "format-plugged": "  {capacity}%",
+    "format-alt": "{icon}  {time}",
+    "format-full": "  {capacity}%",
+    "format-icons": [" ", " ", " ", " ", " "],
+  },
+
+  "clock": {
+    "format": "   {:%H:%M %B %d, %Y}",
+    "tooltip": false,
+  },
+
+  "custom/powermenu": {
+    "format": "",
+    "on-click": "bash ~/.config/wofi/powermenu.sh",
+    "tooltip": false,
+  },
 }
