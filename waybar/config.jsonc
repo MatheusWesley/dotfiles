@@ -87,7 +87,7 @@
       "car": "",
       "default": ["", "", ""],
     },
-    "on-click-right": "pavucontrol",
+    "on-click-right": "~/dotfiles/wofi/audio.sh",
     "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
   },
 
@@ -104,7 +104,7 @@
     "tooltip-format": "{device_alias}",
     "tooltip-format-connected": " {device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}",
-    "on-click": "blueman-manager"
+    "on-click": "blueman-manager",
   },
 
   "battery": {
