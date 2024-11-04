@@ -64,12 +64,12 @@ set_input_device() {
 }
 
 # Exibe menu inicial para escolher o tipo de dispositivo
-DEVICE_TYPE=$(echo -e "🔊 Saída\n🎤 Entrada\n◀️ Sair" | wofi --width 400 --height 300 -d -p "Escolha uma Opção")
+DEVICE_TYPE=$(echo -e "🔊 Saída\n🎤 Entrada\n◀️ Sair" | wofi -n --width 400 --height 300 -d -p "Escolha uma Opção")
 
 # Exibe o menu de dispositivos disponíveis e define o dispositivo selecionado
 case "$DEVICE_TYPE" in
 "🔊 Saída")
-  OUTPUT_DEVICE=$(list_output_devices | wofi --dmenu --width 400 --height 300 -d -p "Dispositivos de Saída" | awk '{print $1}')
+  OUTPUT_DEVICE=$(list_output_devices | wofi -n --dmenu --width 400 --height 300 -d -p "Dispositivos de Saída" | awk '{print $1}')
   if [ -n "$OUTPUT_DEVICE" ]; then
     set_output_device "$OUTPUT_DEVICE"
   else
@@ -77,7 +77,7 @@ case "$DEVICE_TYPE" in
   fi
   ;;
 "🎤 Entrada")
-  INPUT_DEVICE=$(list_input_devices | wofi --dmenu --width 400 --height 300 -d -p "Dispositivos de Entrada" | awk '{print $1}')
+  INPUT_DEVICE=$(list_input_devices | wofi -n --dmenu --width 400 --height 300 -d -p "Dispositivos de Entrada" | awk '{print $1}')
   if [ -n "$INPUT_DEVICE" ]; then
     set_input_device "$INPUT_DEVICE"
   else
