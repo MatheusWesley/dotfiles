@@ -38,10 +38,10 @@ set_output_device() {
     if [ -z "$description" ]; then
       description=$(pactl list sinks | grep -A20 "^Sink #$sink_id" | grep "Description:" | sed 's/Description: //')
     fi
-    notify-send "Dispositivo de saída alterado para $description"
+    notify-send "🟢 Sucesso" "Dispositivo de saída alterado para <b>$description</b>"
     echo "Dispositivo de saída definido com sucesso."
   } || {
-    notify-send "Falha ao alterar dispositivo de saída."
+    notify-send "🔴 Erro" "Falha ao alterar dispositivo de saída."
     echo "Falha ao alterar dispositivo de saída."
   }
 }
