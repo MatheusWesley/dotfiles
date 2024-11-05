@@ -21,9 +21,9 @@
   "hyprland/window": {
     "format": "🎩 {}",
     "rewrite": {
-      "(.*) — Google Chrome": "🌐 $1",
-      "(.*) — Visual Studio Code": "💻 $1",
-      "(.*) — kitty": "🐱 $1",
+      "(.*) — Mozilla Firefox": "🌐 $1",
+      "(.*) — Sublime Text": "💻 $1",
+      "(.*) — Kitty": "🐱 $1",
     },
     "separate-outputs": true,
   },
@@ -50,7 +50,7 @@
   "custom/launcher": {
     "interval": "once",
     "format": "",
-    "on-click": "wofi --show drun --columns 2 -I -s ~/.config/wofi/style.css",
+    "on-click": "wofi -n -p 'Aplicativos' --width 500 --height 300 --show drun",
     "tooltip": false,
   },
 
@@ -127,7 +127,7 @@
   },
 
   "clock": {
-    "format": "   {:%H:%M %B %d, %Y}",
+    "format": "  {:%H:%M %B %d, %Y}",
     "tooltip": false,
   },
 
