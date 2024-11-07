@@ -1,5 +1,6 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
+
 format = """
 [╭╴](fg:arrow)\
 $os\
@@ -22,23 +23,24 @@ $python\
 [](fg:amber bg:red)\
 $docker_context\
 $conda\
-[](fg:red bg:dark_blue)\
-$time\
-[ ](fg:dark_blue)
+[](fg:red bg:base)\
+$cmd_duration\
+[ ](fg:base)
 [╰─](fg:arrow)\
 $character"""
 
 palette = 'catppuccin_mocha'
 
 [palettes.catppuccin_mocha]
-white = "#F5EBD9"       # cor do texto
-dark_blue = "#181825"   # fundo principal
-amber = "#df8e1d"       # fundo secundário (âmbar)
-blue = "#04a5e5"        # azul
-purple = "#8839ef"      # roxo
-red = "#d20f39"         # vermelho
-green = "#B9FBC0"       # verde
-yellow = "#FAE3B0"      # amarelo
+white = "#F5EBD9"     # cor do texto
+dark_blue = "#181825" # fundo principal
+base = "#313244"
+amber = "#df8e1d"     # fundo secundário (âmbar)
+blue = "#04a5e5"      # azul
+purple = "#8839ef"    # roxo
+red = "#d20f39"       # vermelho
+green = "#B9FBC0"     # verde
+yellow = "#FAE3B0"    # amarelo
 
 [os]
 format = "[](dark_blue)[$symbol]($style)"
@@ -152,16 +154,21 @@ style = "bg:amber"
 format = '[[ $symbol( $environment) ](fg:#83a598 bg:red)]($style)'
 
 [time]
-disabled = false
-time_format = "%Hh%M" # formato para exibir "22h30"
+disabled = true
+time_format = "%Hh%M"                                   # formato para exibir "22h30"
 style = "bg:dark_blue"
 format = '[[  $time ](fg:white bg:dark_blue)]($style)'
 
+[cmd_duration]
+min_time = 500
+format = "[ took $duration](fg:white bold bg:base)"
+
+
 [character]
 disabled = false
-success_symbol = '[󰍟](bold fg:green)'
-error_symbol = '[󰍟](bold fg:red)'
-vimcmd_symbol = '[](bold fg:green)'
-vimcmd_replace_one_symbol = '[](bold fg:purple)'
-vimcmd_replace_symbol = '[](bold fg:purple)'
-vimcmd_visual_symbol = '[](bold fg:yellow)'
+success_symbol = '[ ❯](bold fg:green)'
+error_symbol = '[ ✖](bold fg:red)'
+vimcmd_symbol = '[❮](bold fg:green)'
+vimcmd_replace_one_symbol = '[❮](bold fg:purple)'
+vimcmd_replace_symbol = '[❮](bold fg:purple)'
+vimcmd_visual_symbol = '[❮](bold fg:yellow)'
