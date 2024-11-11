@@ -7,7 +7,7 @@
   "passthrough": false,
   "gtk-layer-shell": true,
   "spacing": 7,
-  "modules-left": ["custom/launcher", "hyprland/window"],
+  "modules-left": ["custom/launcher","custom/media", "hyprland/window"],
   "modules-center": ["hyprland/workspaces"],
   "modules-right": [
     "pulseaudio",
@@ -23,7 +23,7 @@
     "rewrite": {
       "(.*) — Mozilla Firefox": "🌐 $1",
       "(.*) — Sublime Text": "💻 $1",
-      "(.*) — Kitty": "🐱 $1",
+      "(.*) — kitty": "🐱 $1",
     },
     "separate-outputs": true,
   },
@@ -128,12 +128,27 @@
 
   "clock": {
     "format": "  {:%H:%M %B %d, %Y}",
-    "tooltip": false,
+    "tooltip": true,
+    "tooltip-format": "Clique para ver calendário.",
+    "on-click": "gnome-calendar"
   },
 
   "custom/powermenu": {
     "format": "",
     "on-click": "bash ~/.config/wofi/powermenu.sh",
     "tooltip": false,
+  },
+
+  "custom/media": {
+    "format": "{0} {1}",
+    "tooltip": true,
+    "tooltip-format": "{0}",
+    "return-type": "json",
+    "max-length": 10,
+    "escape": true,
+    "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null",
+    "on-hover": "playerctl metadata --format '{{ artist }} - {{ title }}'",
+    "on-click": "playerctl play-pause"
+
   },
 }

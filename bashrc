@@ -19,6 +19,8 @@ alias x='exit'
 alias shutdown='systemctl poweroff'
 alias v='$EDITOR'
 
+alias screenshot='flameshot gui'
+
 alias gs="git status"
 alias ga="git add"
 alias gc="git commit -m"
@@ -29,14 +31,15 @@ alias gsp="git stash; git pull"
 alias gcheck="git checkout"
 alias gcredential="git config credential.helper store"
 
+# Importações e exportações
 . "$HOME/.cargo/env"
+
 export PATH="$HOME/.cargo/bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CONFIG_DIRS="/etc/xdg"
-
 export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 PATH=~/.console-ninja/.bin:$PATH
-
